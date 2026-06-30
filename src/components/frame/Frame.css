@@ -1,0 +1,30 @@
+.frame {
+  width: 260px;
+  height: 360px;
+
+  background: #6b3f1d;
+  border: 12px solid #8b5a2b;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+  flex-shrink: 0;
+}
+
+.photo {
+  width: 180px;
+  height: 220px;
+
+  background: #d8d8d8;
+  border: 6px solid #3b2415;
+}
+
+.frame h3 {
+  margin-top: 18px;
+  color: white;
+}

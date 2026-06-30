@@ -1,0 +1,12 @@
+.gallery {
+  display: flex;
+  gap: 80px;
+
+  align-items: center;
+
+  height: 100vh;
+
+  padding: 0 100px;
+
+  width: 3000px;
+}
