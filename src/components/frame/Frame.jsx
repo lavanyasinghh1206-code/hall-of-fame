@@ -1,8 +1,9 @@
 import "./Frame.css";
 
-function Frame() {
+function Frame({ onClick }) {
   return (
-    <div className="frame">
+    <div className="frame" onClick={onClick}>
+      <div className="stage-light"></div>
       <div className="photo"></div>
       <h3>Founder</h3>
     </div>

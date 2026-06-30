@@ -1,30 +1,47 @@
-.frame {
-  width: 260px;
-  height: 360px;
-
-  background: #6b3f1d;
-  border: 12px solid #8b5a2b;
-  border-radius: 10px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-
-  flex-shrink: 0;
+.frame{
+  width:260px;
+  height:360px;
+  background:#6b3f1d;
+  border:12px solid #D4AF37;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  cursor:pointer;
+  overflow:hidden;
+  transition:.3s;
+  filter:brightness(.45);
+  z-index:2;
 }
 
-.photo {
-  width: 180px;
-  height: 220px;
-
-  background: #d8d8d8;
-  border: 6px solid #3b2415;
+.frame:hover{
+  filter:brightness(1);
+  transform:scale(1.08);
+  box-shadow:0 0 30px rgba(255,215,0,.8);
 }
 
-.frame h3 {
-  margin-top: 18px;
-  color: white;
+/* spotlight beam, hangs above the card and shines down */
+.stage-light{
+  position:absolute;
+  top:-120px;
+  left:50%;
+  width:220px;
+  height:300px;
+  transform:translateX(-50%);
+  background:linear-gradient(
+    to bottom,
+    rgba(255,230,150,.6),
+    rgba(255,230,150,.15),
+    transparent
+  );
+  clip-path:polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
+  opacity:0;
+  transition:opacity .35s ease;
+  pointer-events:none;
+  z-index:1;
+}
+
+.frame:hover .stage-light{
+  opacity:1;
 }
