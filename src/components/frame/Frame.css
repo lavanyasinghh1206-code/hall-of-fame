@@ -1,47 +1,136 @@
-.frame{
-  width:260px;
-  height:360px;
-  background:#6b3f1d;
-  border:12px solid #D4AF37;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-  cursor:pointer;
-  overflow:hidden;
-  transition:.3s;
-  filter:brightness(.45);
-  z-index:2;
+.frame-card {
+  position: relative;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Smooth interpolation while scrolling — driven by --proximity on .frame-wrap */
+  opacity: calc(0.2 + var(--proximity, 0) * 0.8);
+  transform: scale(calc(0.82 + var(--proximity, 0) * 0.3));
+  filter:
+    grayscale(calc(0.6 - var(--proximity, 0) * 0.6))
+    brightness(calc(0.45 + var(--proximity, 0) * 0.55));
+  transition: none;
+  will-change: transform, opacity, filter;
 }
 
-.frame:hover{
-  filter:brightness(1);
-  transform:scale(1.08);
-  box-shadow:0 0 30px rgba(255,215,0,.8);
-}
-
-/* spotlight beam, hangs above the card and shines down */
-.stage-light{
-  position:absolute;
-  top:-120px;
-  left:50%;
-  width:220px;
-  height:300px;
-  transform:translateX(-50%);
-  background:linear-gradient(
-    to bottom,
-    rgba(255,230,150,.6),
-    rgba(255,230,150,.15),
-    transparent
+.frame-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 220, 150, 0.35),
+    transparent 70%
   );
-  clip-path:polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
-  opacity:0;
-  transition:opacity .35s ease;
-  pointer-events:none;
-  z-index:1;
+  filter: blur(70px);
+  opacity: var(--proximity, 0);
+  z-index: -1;
+  pointer-events: none;
 }
 
-.frame:hover .stage-light{
-  opacity:1;
+.frame-shell {
+  position: relative;
+  width: 100%;
+}
+
+.frame-portrait {
+  position: absolute;
+  top: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 62%;
+  height: 68%;
+  background: linear-gradient(180deg, #2a1a0e 0%, #120a05 100%);
+  border-radius: 2px;
+  z-index: 0;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.frame-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  user-select: none;
+  pointer-events: none;
+  filter:
+    brightness(calc(0.35 + var(--proximity, 0) * 0.75))
+    saturate(calc(0.55 + var(--proximity, 0) * 0.45))
+    drop-shadow(0 20px 45px rgba(0, 0, 0, 0.9))
+    drop-shadow(0 0 calc(var(--proximity, 0) * 45px) rgba(255, 210, 120, calc(var(--proximity, 0) * 0.4)));
+}
+
+.frame-title {
+  margin-top: 28px;
+  color: #6b5d4a;
+  font-size: 22px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: Georgia, "Times New Roman", serif;
+  opacity: calc(0.45 + var(--proximity, 0) * 0.55);
+  color: color-mix(
+    in srgb,
+    #6b5d4a calc((1 - var(--proximity, 0)) * 100%),
+    #f2ddb0 calc(var(--proximity, 0) * 100%)
+  );
+  text-shadow: 0 0 calc(var(--proximity, 0) * 20px) rgba(255, 210, 120, 0.35);
+}
+
+.frame-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 8px 18px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(140, 120, 90, 0.55);
+  border: 1px solid rgba(120, 90, 50, 0.25);
+  border-radius: 2px;
+  background: rgba(20, 14, 8, 0.4);
+  font-family: Georgia, "Times New Roman", serif;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease,
+    box-shadow 0.3s ease;
+  pointer-events: auto;
+  cursor: pointer;
+  opacity: calc(0.35 + var(--proximity, 0) * 0.65);
+}
+
+.frame-link-icon {
+  font-size: 8px;
+  opacity: 0.7;
+}
+
+.frame-link-arrow {
+  transition: transform 0.3s ease;
+}
+
+.frame-link:hover {
+  color: #e8c878;
+  border-color: rgba(200, 160, 80, 0.45);
+  background: rgba(40, 28, 14, 0.6);
+  box-shadow: 0 0 16px rgba(255, 190, 80, 0.12);
+}
+
+.frame-link:hover .frame-link-arrow {
+  transform: translateX(3px);
+}
+
+.frame-card.active .frame-link {
+  color: #c9a860;
+  border-color: rgba(180, 140, 70, 0.4);
+  background: rgba(30, 22, 10, 0.55);
+}
+
+.frame-card.active .frame-link:hover {
+  color: #f2ddb0;
+  border-color: rgba(220, 180, 100, 0.55);
+  box-shadow: 0 0 20px rgba(255, 200, 100, 0.2);
 }

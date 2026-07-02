@@ -1,0 +1,174 @@
+.gallery-ambience {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Reference wallpaper — fixed, never scrolls */
+
+.gallery-wallpaper {
+  position: absolute;
+  inset: -5%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(1.5px) brightness(0.55) saturate(0.85);
+  transform: scale(1.08);
+}
+
+.gallery-wallpaper-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 16, 12, 0.35) 0%,
+      rgba(30, 24, 18, 0.15) 40%,
+      rgba(15, 12, 10, 0.45) 100%
+    ),
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(255, 220, 160, 0.12) 0%,
+      transparent 55%
+    );
+}
+
+/* Seamless stripe texture echoing the reference */
+
+.gallery-stripes {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent 52px,
+    rgba(180, 150, 90, 0.12) 52px,
+    rgba(180, 150, 90, 0.12) 54px,
+    transparent 54px,
+    transparent 106px,
+    rgba(220, 200, 160, 0.06) 106px,
+    rgba(220, 200, 160, 0.06) 108px
+  );
+}
+
+.gallery-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+}
+
+/* Dark visitor silhouettes like the reference */
+
+.gallery-silhouettes {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 38vh;
+  z-index: 2;
+}
+
+.silhouette {
+  position: absolute;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center bottom,
+    rgba(8, 6, 4, 0.92) 0%,
+    rgba(8, 6, 4, 0.75) 45%,
+    transparent 75%
+  );
+  filter: blur(2px);
+}
+
+.silhouette--one {
+  left: 8%;
+  width: 140px;
+  height: 280px;
+  border-radius: 60% 60% 0 0 / 30% 30% 0 0;
+  opacity: 0.85;
+}
+
+.silhouette--two {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 320px;
+  border-radius: 55% 55% 0 0 / 28% 28% 0 0;
+  opacity: 0.95;
+}
+
+.silhouette--three {
+  right: 10%;
+  width: 120px;
+  height: 260px;
+  border-radius: 58% 58% 0 0 / 32% 32% 0 0;
+  opacity: 0.8;
+}
+
+/* Soft golden bokeh in the spotlight */
+
+.gallery-bokeh {
+  position: absolute;
+  inset: 0;
+}
+
+.bokeh-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 230, 180, 0.5) 0%,
+    transparent 70%
+  );
+  filter: blur(8px);
+  animation: bokehDrift ease-in-out infinite;
+}
+
+.gallery-dust {
+  position: absolute;
+  inset: 0;
+}
+
+.dust-mote {
+  position: absolute;
+  bottom: 20%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 240, 210, 0.6);
+  box-shadow: 0 0 4px rgba(255, 220, 160, 0.5);
+  animation: dustRise linear infinite;
+}
+
+@keyframes bokehDrift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(12px, -18px) scale(1.08);
+  }
+}
+
+@keyframes dustRise {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-180px);
+    opacity: 0;
+  }
+}
