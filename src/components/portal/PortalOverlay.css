@@ -1,0 +1,62 @@
+.portal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.portal-ring {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  margin-left: -9px;
+  margin-top: -9px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(242, 221, 176, 0.8);
+  box-shadow:
+    0 0 20px rgba(255, 210, 130, 0.55),
+    inset 0 0 20px rgba(255, 210, 130, 0.35);
+}
+
+.portal-ring--inner {
+  border-style: dashed;
+  border-color: rgba(230, 190, 110, 0.65);
+}
+
+.portal-glow {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  margin-left: -130px;
+  margin-top: -130px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 236, 200, 0.95) 0%,
+    rgba(255, 205, 120, 0.55) 30%,
+    rgba(220, 150, 60, 0.18) 55%,
+    transparent 72%
+  );
+  filter: blur(6px);
+}
+
+.portal-veil {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--veil-x, 50%) var(--veil-y, 50%),
+    #1a1410 0%,
+    #050403 60%,
+    #000000 100%
+  );
+}
+
+.portal-particle {
+  position: absolute;
+  margin-left: -3px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff3da 0%, #e8c878 55%, transparent 100%);
+  box-shadow: 0 0 10px rgba(255, 210, 130, 0.9);
+}

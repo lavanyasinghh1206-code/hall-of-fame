@@ -1,16 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Frame from "../frame/Frame";
 import GalleryAmbience from "./GalleryAmbience";
+import { usePortalTransition } from "../../context/usePortalTransition";
+import { projects } from "../../data/projects";
 import "./Gallery.css";
-
-const projects = [
-  { title: "Project One", link: "https://example.com/project-one" },
-  { title: "Project Two", link: "https://example.com/project-two" },
-  { title: "Project Three", link: "https://example.com/project-three" },
-  { title: "Project Four", link: "https://example.com/project-four" },
-  { title: "Project Five", link: "https://example.com/project-five" },
-  { title: "Project Six", link: "https://example.com/project-six" },
-];
 
 function updateFrameProximity(gallery, frameRefs) {
   const center = gallery.scrollLeft + gallery.clientWidth / 2;
@@ -30,6 +24,8 @@ export default function Gallery() {
   const frameRefs = useRef([]);
   const isScrollingRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(2);
+  const navigate = useNavigate();
+  const { play } = usePortalTransition();
 
   const syncScrollState = useCallback(() => {
     const gallery = galleryRef.current;
@@ -73,6 +69,32 @@ export default function Gallery() {
     }, 550);
   }, [syncScrollState]);
 
+  const enterProject = useCallback(
+    (project, originEl) => {
+      const rect = originEl.getBoundingClientRect();
+      const origin = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      };
+
+      play(origin, () => {
+        navigate(`/project/${project.slug}`);
+      });
+    },
+    [play, navigate]
+  );
+
+  const handleFrameClick = useCallback(
+    (index, project, event) => {
+      if (index === activeIndex) {
+        enterProject(project, event.currentTarget);
+      } else {
+        scrollToIndex(index);
+      }
+    },
+    [activeIndex, enterProject, scrollToIndex]
+  );
+
   useEffect(() => {
     scrollToIndex(activeIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -112,13 +134,18 @@ export default function Gallery() {
         <div className="track">
           {projects.map((project, index) => (
             <div
-              key={project.title}
+              key={project.slug}
               ref={(el) => {
                 frameRefs.current[index] = el;
               }}
               className="frame-wrap"
               style={{ "--proximity": 0 }}
-              onClick={() => scrollToIndex(index)}
+              title={
+                index === activeIndex
+                  ? "Click to enter this project"
+                  : undefined
+              }
+              onClick={(event) => handleFrameClick(index, project, event)}
             >
               <Frame
                 title={project.title}

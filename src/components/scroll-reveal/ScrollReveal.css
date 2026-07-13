@@ -1,0 +1,102 @@
+.scroll-reveal {
+  position: relative;
+  width: 100%;
+  padding: 34px 0;
+}
+
+.scroll-content {
+  position: relative;
+  border-radius: 6px;
+  padding: 48px 56px;
+  background: radial-gradient(
+      120% 140% at 15% 10%,
+      rgba(255, 255, 255, 0.25),
+      transparent 40%
+    ),
+    radial-gradient(
+      100% 120% at 85% 90%,
+      rgba(120, 90, 50, 0.18),
+      transparent 45%
+    ),
+    linear-gradient(180deg, #efe2c4 0%, #e6d5aa 55%, #dcc797 100%);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(120, 85, 40, 0.25),
+    inset 0 2px 12px rgba(255, 250, 235, 0.5),
+    inset 0 -2px 12px rgba(90, 60, 25, 0.25);
+}
+
+/* Soft shadow where the paper curls in under each rod */
+.scroll-content::before,
+.scroll-content::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 26px;
+  pointer-events: none;
+}
+
+.scroll-content::before {
+  top: 0;
+  background: linear-gradient(180deg, rgba(60, 40, 15, 0.35), transparent);
+}
+
+.scroll-content::after {
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(60, 40, 15, 0.35), transparent);
+}
+
+.scroll-rod {
+  position: absolute;
+  left: -34px;
+  right: -34px;
+  height: 20px;
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    #f7e9c2 0%,
+    #cf9d4e 35%,
+    #8a5a24 75%,
+    #5c3a16 100%
+  );
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 245, 220, 0.7),
+    inset 0 -2px 4px rgba(60, 35, 10, 0.6);
+  z-index: 3;
+}
+
+.scroll-rod::before,
+.scroll-rod::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: radial-gradient(
+    circle at 32% 28%,
+    #fbf0d2,
+    #cf9d4e 45%,
+    #6b4118 100%
+  );
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 250, 230, 0.6);
+}
+
+.scroll-rod::before {
+  left: -13px;
+}
+
+.scroll-rod::after {
+  right: -13px;
+}
+
+/* Rods rest just clear of the parchment edge, not centered over it */
+.scroll-rod--top {
+  transform: translateY(-65%);
+}
+
+.scroll-rod--bottom {
+  transform: translateY(65%);
+}
