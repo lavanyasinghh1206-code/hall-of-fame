@@ -1,0 +1,136 @@
+.project-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #050403;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  overflow-y: auto;
+}
+
+.project-page-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(40, 30, 18, 0.5) 0%,
+    rgba(10, 8, 6, 0.7) 55%,
+    #000000 100%
+  );
+}
+
+.project-page-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  width: 100%;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #f2ddb0;
+}
+
+.project-page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.project-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 48px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(200, 170, 110, 0.7);
+  transition: color 0.3s ease;
+}
+
+.project-back:hover {
+  color: #e8c878;
+}
+
+.project-back-arrow {
+  transition: transform 0.3s ease;
+}
+
+.project-back:hover .project-back-arrow {
+  transform: translateX(-3px);
+}
+
+.project-year {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: rgba(90, 60, 25, 0.7);
+  margin-bottom: 12px;
+}
+
+.project-title {
+  font-size: clamp(32px, 5vw, 50px);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  color: #2c1c0f;
+  text-shadow: 0 1px 0 rgba(255, 250, 235, 0.4);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin-bottom: 28px;
+}
+
+.project-tags li {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid rgba(107, 74, 36, 0.35);
+  border-radius: 2px;
+  color: #5c3a16;
+  background: rgba(255, 250, 235, 0.4);
+}
+
+.project-description {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #3c2a16;
+  margin-bottom: 40px;
+}
+
+.project-visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 26px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #5c3a16;
+  border: 1px solid rgba(107, 74, 36, 0.45);
+  border-radius: 2px;
+  background: rgba(255, 250, 235, 0.35);
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.project-visit:hover {
+  color: #2c1c0f;
+  border-color: rgba(107, 74, 36, 0.7);
+  box-shadow: 0 0 16px rgba(120, 85, 35, 0.25);
+}
+
+.project-visit-arrow {
+  transition: transform 0.3s ease;
+}
+
+.project-visit:hover .project-visit-arrow {
+  transform: translateX(3px);
+}
