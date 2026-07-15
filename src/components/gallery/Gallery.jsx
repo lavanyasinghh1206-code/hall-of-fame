@@ -148,10 +148,11 @@ export default function Gallery() {
               onClick={(event) => handleFrameClick(index, project, event)}
             >
               <Frame
-                title={project.title}
-                link={project.link}
-                active={index === activeIndex}
-              />
+  title={project.title}
+  image={project.image}
+  link={project.link}
+  active={index === activeIndex}
+/>
             </div>
           ))}
         </div>

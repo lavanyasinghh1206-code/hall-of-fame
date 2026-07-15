@@ -1,13 +1,23 @@
 import "./Frame.css";
-import frameImg from "../../assets/frame.jpeg";
+import frameImg from "../../assets/frame.png";
 
-export default function Frame({ title, link, active = false }) {
+export default function Frame({
+  title,
+  image,
+  link,
+  active = false,
+}) {
   return (
     <div className={`frame-card ${active ? "active" : ""}`}>
       <div className="frame-glow" aria-hidden="true" />
 
       <div className="frame-shell">
-        <div className="frame-portrait" aria-hidden="true" />
+        <img
+  src={image}
+  alt={title}
+  className="frame-portrait"
+  draggable={false}
+/>
         <img
           src={frameImg}
           alt=""

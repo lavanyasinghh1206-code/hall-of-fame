@@ -1,7 +1,11 @@
+import img1 from "../assets/pictures/1.png";
+import img2 from "../assets/pictures/2.png";
+import img3 from "../assets/pictures/3.png";
 export const projects = [
   {
     slug: "Accesslens",
     title: "Accesslens",
+    image: img2,
     link: "https://accesslens-azure.vercel.app",
     year: "2026",
     tags: ["Web", "React"],
@@ -11,6 +15,7 @@ export const projects = [
   {
     slug: "Collabodraw",
     title: "Collabodraw",
+    image: img1,
     link: "https://collabodraw-bdd2.onrender.com",
     year: "2026",
     tags: ["Mobile", "Design"],
@@ -20,6 +25,7 @@ export const projects = [
   {
     slug: "Pocketcart",
     title: "Pocketcart",
+    image: img3,
     link: "https://pocketcart-beta.vercel.app",
     year: "2026",
     tags: ["nodejs", "manifest","mongoDB","reactjs"],
