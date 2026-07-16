@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Gallery from "./components/gallery/Gallery";
+import GalleryWithLanding from "./components/gallery/GalleryWithLanding";
 import ProjectPage from "./components/project-page/ProjectPage";
 import PortalOverlay from "./components/portal/PortalOverlay";
 import { PortalTransitionProvider } from "./context/PortalTransitionProvider";
@@ -10,9 +10,10 @@ function App() {
       <BrowserRouter>
         <PortalTransitionProvider>
           <Routes>
-            <Route path="/" element={<Gallery />} />
+            <Route path="/" element={<GalleryWithLanding />} />
             <Route path="/project/:slug" element={<ProjectPage />} />
           </Routes>
+
           <PortalOverlay />
         </PortalTransitionProvider>
       </BrowserRouter>
